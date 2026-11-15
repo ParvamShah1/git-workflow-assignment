@@ -1,0 +1,120 @@
+GIT COMMANDS USED IN THIS ASSIGNMENT
+====================================
+
+STEP 1: LOCAL REPOSITORY SETUP
+------------------------------
+
+git init -b main
+    Creates a new, empty Git repository in the current folder and names the
+    first branch "main".
+
+git status
+    Shows the current state of the working directory and staging area:
+    which files are untracked, modified or staged.
+
+
+STEP 2: GIT WORKFLOW
+--------------------
+
+git add index.html about.html
+    Stages the named files, so their current contents go into the next commit.
+
+git commit -m "Initial commit: add index.html and about.html"
+    Records the staged changes as a new commit with the given message.
+    This is the first snapshot of the project.
+
+git status --short
+    Shows the same information as git status in a compact, one-line-per-file
+    format.
+
+git diff
+    Shows the line-by-line changes in the working directory that are not yet
+    staged.
+
+git add index.html
+git commit -m "Update index.html with project description"
+    Stages the modified index.html and records it as the second commit.
+
+git branch feature
+    Creates a new branch named "feature" pointing at the current commit.
+    It does not switch to it.
+
+git checkout feature
+    Switches the working directory to the "feature" branch.
+
+git branch
+    Lists all local branches and marks the current one with an asterisk.
+
+git add about.html
+git commit -m "Add contact section to about.html"
+    Stages and commits the change to about.html on the feature branch only.
+
+git checkout main
+    Switches back to the "main" branch.
+
+git merge --no-ff feature -m "Merge branch 'feature' into main"
+    Merges the feature branch into main. The --no-ff option forces a merge
+    commit, so the branch activity stays visible in the history.
+
+git log --oneline --graph --all --decorate
+    Displays the commit history of all branches, one line per commit, with
+    a text graph of branches and merges and with branch names shown.
+
+
+STEP 3: .gitignore
+------------------
+
+git check-ignore -v debug.log temp/notes.txt
+    Confirms that the given files are ignored and shows which .gitignore
+    rule matches each one.
+
+git add .gitignore
+git commit -m "Add .gitignore for log files and temp folder"
+    Stages and commits the .gitignore file so the ignore rules are part of
+    the repository.
+
+
+STEP 4: UNDO OPERATION
+----------------------
+
+git add index.html
+git commit -m "Add temporary footer to index.html"
+    Creates the additional commit that will be undone.
+
+git log --oneline -3
+    Shows the three most recent commits, to see the history before the undo.
+
+git revert --no-edit HEAD
+    Undoes the last commit by creating a new commit that reverses its
+    changes. The history is preserved, so the undo is visible on GitHub.
+    --no-edit accepts the default "Revert ..." commit message.
+
+git log --oneline -4
+    Shows the four most recent commits, to see the revert commit on top of
+    the commit it undid.
+
+
+STEP 5: GITHUB INTEGRATION
+--------------------------
+
+git remote add origin https://github.com/ParvamShah1/git-workflow-assignment.git
+    Connects the local repository to the GitHub repository and names that
+    connection "origin".
+
+git remote -v
+    Lists the configured remotes with their URLs, to verify the connection.
+
+git push -u origin main
+    Uploads the main branch and its full history to GitHub. The -u option
+    sets origin/main as the upstream, so later pushes need only "git push".
+
+git push origin feature
+    Uploads the feature branch to GitHub so the branch is visible there too.
+
+
+STEP 6: COMMAND DOCUMENTATION
+-----------------------------
+
+git add git_commands.txt
+git commit -m "Add git_commands.txt documenting all commands used"
+    Stages and commits this documentation file.
